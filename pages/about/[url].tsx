@@ -18,6 +18,11 @@ function AboutUs() {
         <LayoutTitle size='small' component='span'>
           About us 2
         </LayoutTitle>
+
+            <LayoutTitle size='small' component='span'>
+          About us 3 test
+        </LayoutTitle>
+
       </LayoutOverlayHeader>
       <PageMeta title='About us' />
       <LayoutTitle>About us</LayoutTitle>

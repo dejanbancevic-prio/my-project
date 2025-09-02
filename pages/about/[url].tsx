@@ -1,21 +1,9 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
-import {
-  GetStaticProps,
-  LayoutOverlayHeader,
-  LayoutTitle,
-  PageMeta,
-} from '@graphcommerce/next-ui'
-import {
-  LayoutDocument,
-  LayoutNavigation,
-  LayoutNavigationProps,
-} from '../../components'
-import {
-  graphqlSharedClient,
-  graphqlSsrClient,
-} from '../../lib/graphql/graphqlSsrClient'
+import { GetStaticProps, LayoutOverlayHeader, LayoutTitle, PageMeta } from '@graphcommerce/next-ui'
 import type { GetStaticPaths } from 'next'
+import { LayoutDocument, LayoutNavigation, LayoutNavigationProps } from '../../components'
+import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
 
 type GetPageStaticProps = GetStaticProps<LayoutNavigationProps>
 
@@ -26,6 +14,15 @@ function AboutUs() {
         <LayoutTitle size='small' component='span'>
           About us
         </LayoutTitle>
+
+        <LayoutTitle size='small' component='span'>
+          About us 2
+        </LayoutTitle>
+
+            <LayoutTitle size='small' component='span'>
+          About us 3 test
+        </LayoutTitle>
+
       </LayoutOverlayHeader>
       <PageMeta title='About us' />
       <LayoutTitle>About us</LayoutTitle>
@@ -40,6 +37,14 @@ AboutUs.pageOptions = pageOptions
 
 export default AboutUs
 
+const hygraphPageContent = async (client: any, url: string) => {
+  const data = {
+    data: {
+      pages: 'da',
+    },
+  }
+  return data
+}
 
 export const getStaticPaths: GetStaticPaths = async (context) => ({
   paths: [],
@@ -58,8 +63,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
     fetchPolicy: 'cache-first',
   })
 
-  if (!(await page).data.pages?.[0])
-    return { notFound: true, revalidate: 60 }
+  if (!(await page).data.pages?.[0]) return { notFound: true, revalidate: 60 }
 
   return {
     props: {
